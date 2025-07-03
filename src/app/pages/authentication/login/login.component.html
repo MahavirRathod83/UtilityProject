@@ -1,1 +1,115 @@
-<p>login works!</p>
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100"
+  style="font-family: 'Montserrat', sans-serif; padding: 0 10px"
+>
+  <div class="login_form row">
+    <div class="col-xs-12 col-sm-6">
+      <img
+        src="https://preview.colorlib.com/theme/bootstrap/login-form-07/images/undraw_remotely_2j6y.svg"
+        class="h-100 w-100"
+        alt="Login Image"
+      />
+    </div>
+    <form
+      class="col-xs-12 col-sm-6 login-form-container"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <h3 class="text-center mb-4">Log in with</h3>
+
+      <div
+        class="d-flex justify-content-between align-items-center w-100 mb-4 login_option"
+      >
+        <div class="option">
+          <a href="#">
+            <img src="assets/images/google-logo.png" alt="Google" />
+            <span>Google</span>
+          </a>
+        </div>
+        <div class="option">
+          <a href="#">
+            <img src="assets/images/apple-logo.png" alt="Apple" />
+            <span>Apple</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="separator text-center mb-4">
+        <span>or</span>
+      </div>
+
+      <!-- Email Field -->
+      <div class="mb-3 input_box">
+        <label for="email" class="form-label"
+          >Email<span class="text-danger">*</span></label
+        >
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="Enter email address"
+          [class.is-invalid]="
+            loginControls['email'].touched && loginControls['email'].invalid
+          "
+        />
+        <div
+          *ngIf="
+            loginControls['email'].touched && loginControls['email'].invalid
+          "
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="loginControls['email'].errors?.['required']">
+            Email is required
+          </div>
+          <div *ngIf="loginControls['email'].errors?.['email']">
+            Enter a valid email
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-3 input_box">
+        <div class="password_title">
+          <label for="password" class="form-label"
+            >Password<span class="text-danger">*</span></label
+          >
+          <a href="#">Forgot Password?</a>
+        </div>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="Enter your password"
+          [class.is-invalid]="
+            loginControls['password'].touched &&
+            loginControls['password'].invalid
+          "
+        />
+        <div
+          *ngIf="
+            loginControls['password'].touched &&
+            loginControls['password'].invalid
+          "
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="loginControls['password'].errors?.['required']">
+            Password is required
+          </div>
+          <div *ngIf="loginControls['password'].errors?.['minlength']">
+            Minimum 6 characters required
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100">Log In</button>
+
+      <!-- Sign up text -->
+      <p class="text-center mt-3">
+        Don't have an account? <a [routerLink]="['/auth/signup']">Sign up</a>
+      </p>
+    </form>
+  </div>
+</div>

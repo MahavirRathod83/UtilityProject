@@ -1,0 +1,205 @@
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100"
+  style="font-family: 'Montserrat', sans-serif; padding: 0 10px"
+>
+  <div class="login_form row">
+    <div class="col-xs-12 col-sm-6">
+      <img
+        src="https://preview.colorlib.com/theme/bootstrap/login-form-07/images/undraw_remotely_2j6y.svg"
+        class="h-100 w-100"
+        alt="Login Image"
+      />
+    </div>
+    <form
+      class="col-xs-12 col-sm-6 login-form-container"
+      [formGroup]="userForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <h3 class="text-center mb-4">User Details</h3>
+
+      <!-- First Name -->
+      <div class="mb-3">
+        <label for="firstName" class="form-label"
+          >First Name<span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          id="firstName"
+          class="form-control"
+          formControlName="firstName"
+          [class.is-invalid]="
+            controls['firstName'].touched && controls['firstName'].invalid
+          "
+        />
+        <div
+          *ngIf="controls['firstName'].touched && controls['firstName'].invalid"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="controls['firstName'].errors?.['required']">
+            First name is required
+          </div>
+          <div *ngIf="controls['firstName'].errors?.['minlength']">
+            At least 2 characters
+          </div>
+        </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-3">
+        <label for="lastName" class="form-label"
+          >Last Name<span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          id="lastName"
+          class="form-control"
+          formControlName="lastName"
+          [class.is-invalid]="
+            controls['lastName'].touched && controls['lastName'].invalid
+          "
+        />
+        <div
+          *ngIf="controls['lastName'].touched && controls['lastName'].invalid"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="controls['lastName'].errors?.['required']">
+            Last name is required
+          </div>
+          <div *ngIf="controls['lastName'].errors?.['minlength']">
+            At least 2 characters
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label"
+          >Email<span class="text-danger">*</span></label
+        >
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          [class.is-invalid]="
+            controls['email'].touched && controls['email'].invalid
+          "
+        />
+        <div
+          *ngIf="controls['email'].touched && controls['email'].invalid"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="controls['email'].errors?.['required']">
+            Email is required
+          </div>
+          <div *ngIf="controls['email'].errors?.['email']">
+            Enter a valid email
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="mb-3">
+        <label for="phone" class="form-label"
+          >Phone Number<span class="text-danger">*</span></label
+        >
+        <input
+          type="number"
+          id="phone"
+          class="form-control"
+          formControlName="phone"
+          maxlength="15"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          [class.is-invalid]="
+            controls['phone'].touched && controls['phone'].invalid
+          "
+        />
+        <div
+          *ngIf="controls['phone'].touched && controls['phone'].invalid"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="controls['phone'].errors?.['required']">
+            Phone number is required
+          </div>
+          <div *ngIf="controls['phone'].errors?.['pattern']">
+            Phone number must be 10 to 15 digits
+          </div>
+        </div>
+      </div>
+
+      <!-- Birthdate -->
+      <div class="mb-3">
+        <label for="birthdate" class="form-label"
+          >Birthdate<span class="text-danger">*</span></label
+        >
+        <input
+          type="date"
+          id="birthdate"
+          class="form-control"
+          formControlName="birthdate"
+          [class.is-invalid]="
+            controls['birthdate'].touched && controls['birthdate'].invalid
+          "
+        />
+        <div
+          *ngIf="controls['birthdate'].touched && controls['birthdate'].invalid"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="controls['birthdate'].errors?.['required']">
+            Birthdate is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="mb-3">
+        <label class="form-label">Gender</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              formControlName="gender"
+              id="male"
+              value="male"
+            />
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              formControlName="gender"
+              id="female"
+              value="female"
+            />
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              formControlName="gender"
+              id="other"
+              value="other"
+            />
+            <label class="form-check-label" for="other">Other</label>
+          </div>
+        </div>
+        <div
+          *ngIf="controls['gender'].touched && controls['gender'].invalid"
+          class="text-danger small mt-1"
+        >
+          Gender is required
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-100" type="submit">Submit</button>
+
+      <p class="text-center mt-3">
+        Already have an account? <a [routerLink]="['/auth/login']">Log In</a>
+      </p>
+    </form>
+  </div>
+</div>
