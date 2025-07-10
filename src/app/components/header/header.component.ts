@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
+import { CommonService } from '../../core/services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,16 @@ import { Component, ElementRef, HostListener } from '@angular/core';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+
+  @Input() isShowMenuItems: boolean = true;
+  public isSidebarClosed = false;
+  public isShowToggleButton = false;
+
+  constructor(
+    private eRef: ElementRef,
+    private _commonService: CommonService,
+  ) {}
+
   //   public headerMenuItems = [
   //   {
   //     icon: 'fa-solid fa-gauge',
@@ -87,6 +98,7 @@ export class HeaderComponent {
       link: '#',
     },
   ];
+  public isMobileMenuOpen = false;
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {
@@ -97,12 +109,22 @@ export class HeaderComponent {
 
   @HostListener('window:resize')
   onResize() {
-    if (window.innerWidth > 768 && this.isMobileMenuOpen) {
-      this.closeMobileMenu();
+    if (window.innerWidth > 576 && this.isMobileMenuOpen) {
+      this.handleToggleButtonPlace();
+      this.closeSidebar();
+    }
+    if(window.innerWidth > 576){
+      this.isShowToggleButton = false;
+    } else {
+      this.isShowToggleButton = true;
     }
   }
 
-  constructor(private eRef: ElementRef) {}
+  ngOnInit(){
+    this._commonService.isSidebarClosed$.subscribe((value) => {
+      this.isSidebarClosed = value;
+    });
+  }
 
   toggleSubmenu(item: any, event: MouseEvent) {
     event.stopPropagation();
@@ -117,14 +139,20 @@ export class HeaderComponent {
     item.isOpen = true;
   }
 
-  isMobileMenuOpen = false;
-
-  toggleMobileMenu() {
+  toggleSidebar() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  closeMobileMenu() {
+  closeSidebar() {
     this.isMobileMenuOpen = false;
     this.headerMenuItems.forEach((item) => (item.isOpen = false));
+  }
+
+  handleSidebarToggle(){
+    this._commonService.isSidebarClosed$.next(!this.isSidebarClosed);
+  }
+
+  handleToggleButtonPlace(){
+    return window.innerWidth > 576;
   }
 }

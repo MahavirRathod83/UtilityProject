@@ -1,13 +1,15 @@
 <div class="sidebar" [class.close]="isSidebarClosed">
   <div class="logo-details">
-    <i class="bx bxl-c-plus-plus"></i>
-    <span class="logo_name">CodingLab</span>
+    <span class="logo-text text-white ms-4">CodingLab</span>
+    <div class="sidebar-toggle pe-4" (click)="toggleSidebar()">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
   </div>
   <ul class="nav-links">
     <li *ngFor="let item of menuItems" [class.showMenu]="item.isOpen">
       <!-- With submenu -->
       <div class="iocn-link" *ngIf="item.submenu" (click)="toggleSubmenu(item)">
-        <a href="#">
+        <a>
           <i [class]="item.icon"></i>
           <span class="link_name">{{ item.name }}</span>
         </a>
@@ -23,7 +25,7 @@
       <!-- Sub-menu -->
       <ul class="sub-menu" *ngIf="item.submenu">
         <li>
-          <a class="link_name" href="#">{{ item.name }}</a>
+          <a class="link_name">{{ item.name }}</a>
         </li>
         <li *ngFor="let sub of item.submenu">
           <a [href]="sub.link">{{ sub.name }}</a>
@@ -34,9 +36,8 @@
 </div>
 
 <!-- Main content area -->
-<section class="home-section">
+<!-- <section class="home-section">
   <div class="home-content">
     <i class="bx bx-menu" (click)="toggleSidebar()"></i>
-    <span class="text">Drop Down Sidebar</span>
   </div>
-</section>
+</section> -->

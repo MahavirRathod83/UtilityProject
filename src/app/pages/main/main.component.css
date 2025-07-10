@@ -1,0 +1,31 @@
+.main-layout {
+  display: flex;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+}
+
+app-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background-color: #f4f4f4;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+
+  @media (max-width: 576px) {
+    width: 100%;
+    height: auto;
+    order: 1;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+
+  @media (max-width: 576px) {
+    order: 2;
+  }
+}
