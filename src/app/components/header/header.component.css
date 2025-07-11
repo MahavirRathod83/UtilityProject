@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #11101d;
+  background: var(--header-bg);
   padding: 10px 20px;
   color: white;
   height: 60px;
@@ -63,7 +63,7 @@
   position: absolute;
   top: 40px;
   left: 0;
-  background: #1e1e2f;
+  background: var(--header-open-bg);
   padding: 8px 0;
   border-radius: 4px;
   min-width: 160px;
@@ -82,7 +82,7 @@
 }
 
 .dropdown li a:hover {
-  background: #29293d;
+  background: var(--header-bg);
 }
 
 .nav-item.open .dropdown {
@@ -112,11 +112,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #11101d;
+  background: var(--header-bg);
   padding: 10px 20px;
-  color: white;
+  color: black;
   height: 60px;
   position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-left {
@@ -132,6 +133,7 @@
 .logo-text {
   font-weight: bold;
   font-size: 18px;
+  color: var(--header-text);;
 }
 
 /* === Hamburger Icon === */
@@ -139,7 +141,7 @@
   display: none;
   cursor: pointer;
   font-size: 24px;
-  color: white;
+  color: var(--header-text);
 }
 
 /* === Desktop Navigation === */
@@ -161,7 +163,7 @@
 }
 
 .nav-link {
-  color: white;
+  color: var(--header-text);;
   cursor: pointer;
   text-decoration: none;
   display: flex;
@@ -174,16 +176,19 @@
   position: absolute;
   top: 40px;
   left: 0;
-  background: #1e1e2f;
+  background: var(--header-open-bg);
   padding: 8px 0;
   border-radius: 4px;
   display: block;
   min-width: 160px;
   z-index: 1000;
+  border: 1px solid var(--header-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
 }
 
 .dropdown li a {
-  color: white;
+  color: var(--header-text);;
   text-decoration: none;
   padding: 8px 16px;
   display: block;
@@ -213,7 +218,7 @@
   left: -260px;
   width: 250px;
   height: calc(100% - 60px);
-  background: #1e1e2f;
+  background: var(--header-open-bg);
   transition: left 0.3s ease;
   z-index: 999;
   padding: 10px 0;
@@ -230,7 +235,7 @@
 }
 
 .mobile-link {
-  color: white;
+  color: var(--header-text);;
   padding: 12px 20px;
   cursor: pointer;
   display: flex;
@@ -242,12 +247,13 @@
 }
 
 .mobile-submenu {
-  background: #29293d;
+  background: var(--header-bg);
+  list-style-type: none;
 }
 
 .mobile-submenu li a {
   display: block;
-  color: white;
+  color: var(--header-text);;
   padding: 10px 30px;
   text-decoration: none;
 }

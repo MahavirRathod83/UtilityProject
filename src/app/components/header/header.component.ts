@@ -10,7 +10,7 @@ import { CommonService } from '../../core/services/common.service';
 export class HeaderComponent {
 
   @Input() isShowMenuItems: boolean = true;
-  public isSidebarClosed = false;
+  public isSidebarClosed = true;
   public isShowToggleButton = false;
 
   constructor(
@@ -121,6 +121,11 @@ export class HeaderComponent {
   }
 
   ngOnInit(){
+    if(window.innerWidth > 576){
+      this.isShowToggleButton = false;
+    } else {
+      this.isShowToggleButton = true;
+    }
     this._commonService.isSidebarClosed$.subscribe((value) => {
       this.isSidebarClosed = value;
     });

@@ -1,10 +1,13 @@
 :root {
-  --header-bg: #11101d;
-  --header-text: #ffffff;
-  --header-icon: #ffffff;
+  --header-bg: #ffffff;
+  --header-open-bg: #ffffff;
+  --header-text: #000;
+  --header-icon: #000;
 
-  --sidebar-bg: #1e1e2f;
-  --submenu-bg: #29293d;
+  --sidebar-bg: #ffffff;
+  --sidebar-open-bg: #ffffff;
+  --sidebar-text: #000;
+  --sidebar-icon: #000;
 
   --hover-bg: rgba(255, 255, 255, 0.05);
   --active-bg: #34344a;

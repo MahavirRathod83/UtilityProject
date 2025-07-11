@@ -1,12 +1,7 @@
 import {
   Component,
-  ElementRef,
   HostListener,
-  ViewChild,
-  AfterViewInit,
 } from '@angular/core';
-import $ from 'jquery';
-import { Subject } from 'rxjs';
 import { CommonService } from '../../core/services/common.service';
 
 @Component({
@@ -19,7 +14,11 @@ export class SidebarComponent {
 
   constructor(
     private _commonService: CommonService,
-  ){}
+  ){
+    if (window.innerWidth < 576) {
+      this.isSidebarClosed = true;
+    }
+  }
 
   public isSidebarClosed = false;
   public menuItems = [
@@ -62,13 +61,6 @@ export class SidebarComponent {
       link: '#',
     }
   ];
-
-  dropdowns = {
-    category: false,
-    posts: false,
-    plugins: false,
-    // Add more keys as needed
-  };
 
   @HostListener('window:resize')
   onResize() {
