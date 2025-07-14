@@ -1,37 +1,41 @@
 <div *ngIf="isShowMenuItems">
   <!-- Top Header -->
   <header class="header">
-      <div class="header-left">
-        <span class="logo-text">CodingLab</span>
-      </div>
+    <div class="header-left">
+      <span class="logo-text">CodingLab</span>
+    </div>
 
-      <!-- Hamburger for mobile -->
-      <div class="hamburger" (click)="toggleSidebar()">
-        <i class="fa-solid fa-bars"></i>
-      </div>
+    <!-- Hamburger for mobile -->
+    <div class="hamburger" (click)="toggleSidebar()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
 
       <!-- Desktop Menu -->
-      <nav class="header-nav desktop-nav">
-        <ul class="nav-list">
-      <li *ngFor="let item of headerMenuItems" class="nav-item" [class.open]="item.isOpen">
-        <div *ngIf="item.submenu" class="nav-link" (click)="toggleSubmenu(item, $event)">
-              <i [ngClass]="item.icon"></i>
-              {{ item.name }}
-              <i class="fa-solid fa-chevron-down arrow"></i>
-            </div>
-            <a *ngIf="!item.submenu" class="nav-link" [href]="item.link">
-              <i [ngClass]="item.icon"></i>
-              {{ item.name }}
-            </a>
+    <nav class="header-nav desktop-nav">
+      <ul class="nav-list">
+        <li
+          *ngFor="let item of headerMenuItems"
+          class="nav-item has-submenu"
+          (click)="toggleSubmenu(item, $event)"
+        >
+          <div *ngIf="item.submenu" class="nav-link">
+            <i [ngClass]="item.icon"></i>
+            {{ item.name }}
+            <i class="fa-solid fa-chevron-down arrow"></i>
+          </div>
+          <a *ngIf="!item.submenu" class="nav-link" [href]="item.link">
+            <i [ngClass]="item.icon"></i>
+            {{ item.name }}
+          </a>
 
-            <ul class="dropdown" *ngIf="item.submenu && item.isOpen">
-              <li *ngFor="let sub of item.submenu">
-                <a [href]="sub.link">{{ sub.name }}</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+          <ul class="dropdown dropdown-animation" *ngIf="item.submenu">
+            <li *ngFor="let sub of item.submenu">
+              <a [href]="sub.link">{{ sub.name }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 
     <!-- Profile (desktop only) -->
     <div class="header-profile desktop-nav">
